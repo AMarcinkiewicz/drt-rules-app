@@ -1,7 +1,26 @@
 {
   "name": "drt-rules-app",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "A powerful, intuitive interface for building and managing dynamic business rules with drag-and-drop functionality",
   "private": true,
+  "author": "Alex Marcinkiewicz",
+  "license": "MIT",
+  "homepage": "https://github.com/AMarcinkiewicz/drt-rules-app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AMarcinkiewicz/drt-rules-app.git"
+  },
+  "keywords": [
+    "rules-builder",
+    "business-rules",
+    "conditional-logic",
+    "drag-and-drop",
+    "dynamic-forms",
+    "nextjs",
+    "typescript",
+    "shadcn-ui",
+    "drt"
+  ],
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
