@@ -1,0 +1,260 @@
+{
+  "ruleTypes": [
+    "If",
+    "And",
+    "Then",
+    "Or"
+  ],
+  "conditions": {
+    "Assign Date": {
+      "operators": [
+        "="
+      ],
+      "values": [
+        "After Probation",
+        "Join Date"
+      ],
+      "inputType": "date"
+    },
+    "Accrual Frequency": {
+      "operators": [
+        "="
+      ],
+      "values": [
+        "Monthly",
+        "Yearly"
+      ],
+      "inputType": "dropdown"
+    },
+    "Rate of Accrual": {
+      "operators": [
+        "="
+      ],
+      "values": [
+        "X Days/ Month"
+      ],
+      "inputType": "number"
+    },
+    "Cap to Accrual": {
+      "operators": [
+        "="
+      ],
+      "values": [
+        "X Days"
+      ],
+      "inputType": "number"
+    },
+    "Prorated": {
+      "operators": [
+        "="
+      ],
+      "values": [
+        "OFF",
+        "ON"
+      ],
+      "inputType": "dropdown"
+    },
+    "Entitlement": {
+      "operators": [
+        "="
+      ],
+      "values": [
+        "X Days"
+      ],
+      "inputType": "number"
+    },
+    "Carry Over Allowed": {
+      "operators": [
+        "="
+      ],
+      "values": [
+        "OFF",
+        "ON"
+      ],
+      "inputType": "dropdown"
+    },
+    "Maximimum Carry Over": {
+      "operators": [
+        "="
+      ],
+      "values": [
+        "X Days"
+      ],
+      "inputType": "number"
+    },
+    "Carry Over Expiration": {
+      "operators": [
+        "="
+      ],
+      "values": [
+        "MM/DD/YYYY"
+      ],
+      "inputType": "date"
+    },
+    "Minimum Duration Allowed": {
+      "operators": [
+        "="
+      ],
+      "values": [
+        "Full Day",
+        "Half Day",
+        "Hourly"
+      ],
+      "inputType": "number"
+    },
+    "Wait Period": {
+      "operators": [
+        "="
+      ],
+      "values": [
+        "X Days"
+      ],
+      "inputType": "number"
+    },
+    "Additional Entitlement": {
+      "operators": [
+        "="
+      ],
+      "values": [
+        "X Days"
+      ],
+      "inputType": "number"
+    },
+    "Paid": {
+      "operators": [
+        "="
+      ],
+      "values": [
+        "OFF",
+        "ON"
+      ],
+      "inputType": "dropdown"
+    },
+    "Tenure": {
+      "operators": [
+        "=, < , > , >or=, <or=, \u2260"
+      ],
+      "values": [
+        "Months",
+        "X Days",
+        "Years"
+      ],
+      "inputType": "number"
+    },
+    "Age": {
+      "operators": [
+        "=, < , > , >or=, <or=, \u2260"
+      ],
+      "values": [
+        "Years"
+      ],
+      "inputType": "dropdown"
+    },
+    "Join Date": {
+      "operators": [
+        "=, Before, After"
+      ],
+      "values": [
+        "MM/DD/YYYY"
+      ],
+      "inputType": "date"
+    },
+    "Work Schedule": {
+      "operators": [
+        "=, \u2260"
+      ],
+      "values": [
+        "Adaptive - In Tenant Values"
+      ],
+      "inputType": "dropdown"
+    },
+    "Marital Status": {
+      "operators": [
+        "=, \u2260"
+      ],
+      "values": [
+        "Married",
+        "Other",
+        "Single"
+      ],
+      "inputType": "dropdown"
+    },
+    "Gender": {
+      "operators": [
+        "=, \u2260"
+      ],
+      "values": [
+        "Female",
+        "Male",
+        "Other"
+      ],
+      "inputType": "dropdown"
+    },
+    "Job Title": {
+      "operators": [
+        "=, \u2260"
+      ],
+      "values": [
+        "Adaptive - In Tenant Values"
+      ],
+      "inputType": "dropdown"
+    },
+    "Position Type": {
+      "operators": [
+        "=, \u2260"
+      ],
+      "values": [
+        "Consultant",
+        "Contractor",
+        "Employee",
+        "Executive",
+        "Intern",
+        "Management"
+      ],
+      "inputType": "dropdown"
+    },
+    "Employement Type": {
+      "operators": [
+        "=, \u2260"
+      ],
+      "values": [
+        "Full Time",
+        "Hourly",
+        "Part Time",
+        "Temporary"
+      ],
+      "inputType": "dropdown"
+    },
+    "Contract Type": {
+      "operators": [
+        "=, \u2260"
+      ],
+      "values": [
+        "Apprenticeship",
+        "Casual/On Call",
+        "Contract/Project Based",
+        "Fixed Term",
+        "Intership"
+      ],
+      "inputType": "date"
+    },
+    "Department": {
+      "operators": [
+        "=, \u2260"
+      ],
+      "values": [
+        "Adaptive - In Tenant Values"
+      ],
+      "inputType": "dropdown"
+    },
+    "Leave Period": {
+      "operators": [
+        "=, < , > , >or=, <or=, \u2260"
+      ],
+      "values": [
+        "X Days/Months"
+      ],
+      "inputType": "number"
+    }
+  }
+}
