@@ -72,7 +72,7 @@ export function RuleRow({ rule, onUpdate, onDelete }: RuleRowProps) {
             value={rule.conditionValue}
             onChange={(e) => handleConditionValueChange(e.target.value)}
             placeholder="Enter number"
-            className="w-full h-8"
+            className="w-full h-9"
           />
         );
       
@@ -82,7 +82,7 @@ export function RuleRow({ rule, onUpdate, onDelete }: RuleRowProps) {
             type="date"
             value={rule.conditionValue}
             onChange={(e) => handleConditionValueChange(e.target.value)}
-            className="w-full h-8"
+            className="w-full h-9"
           />
         );
       
@@ -108,7 +108,7 @@ export function RuleRow({ rule, onUpdate, onDelete }: RuleRowProps) {
             value={rule.conditionValue}
             onChange={(e) => handleConditionValueChange(e.target.value)}
             placeholder="Enter value"
-            className="w-full h-8"
+            className="w-full h-9"
           />
         );
     }
@@ -116,14 +116,14 @@ export function RuleRow({ rule, onUpdate, onDelete }: RuleRowProps) {
 
   return (
     <Card ref={setNodeRef} style={style} className={isDragging ? "shadow-lg" : ""}>
-      <CardContent className="p-3">
+      <CardContent className="px-3 py-0">
         <div className="flex items-end gap-3">
           {/* Drag Handle - Hugs left side */}
           <div className="flex items-center justify-center flex-shrink-0">
             <Button
               variant="ghost"
               size="icon"
-              className="cursor-grab active:cursor-grabbing text-gray-400 hover:text-gray-600 h-8 w-8"
+              className="cursor-grab active:cursor-grabbing text-gray-400 hover:text-gray-600 h-9 w-9"
               {...attributes}
               {...listeners}
             >
@@ -196,7 +196,7 @@ export function RuleRow({ rule, onUpdate, onDelete }: RuleRowProps) {
                 variant="outline"
                 size="icon"
                 onClick={onDelete}
-                className="text-red-600 hover:text-red-700 hover:bg-red-50 h-8 w-8"
+                className="text-red-600 hover:text-red-700 hover:bg-red-50 h-9 w-9"
               >
                 <Trash2 className="h-3 w-3" />
               </Button>
