@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle, Plus, Trash2, Settings, Database } from "lucide-react";
+import { CheckCircle, Plus, Trash2, Settings, Database, ArrowRight } from "lucide-react";
 
 export default function Home() {
   return (
@@ -13,17 +13,17 @@ export default function Home() {
             DRT Rules Builder
           </h1>
           <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            A powerful, intuitive interface for building and managing dynamic business rules. 
-            Create complex conditional logic with ease using our drag-and-drop rule builder.
+            Build sophisticated leave policies with our intelligent rule engine. 
+            Configure complex HR policies using drag-and-drop interface with 25+ condition types and smart validation.
           </p>
         </div>
 
         {/* Main CTA */}
         <div className="text-center mb-16">
           <Link href="/rules-builder">
-            <Button size="lg" className="text-lg px-8 py-6 cursor-pointer">
-              <Settings className="mr-2 h-5 w-5" />
-              Launch Rules Builder
+            <Button size="lg" className="text-lg px-8 py-6 cursor-pointer rounded-full">
+              Build Leave Policy
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </Link>
         </div>
@@ -41,9 +41,9 @@ export default function Home() {
                   <span className="text-blue-600 dark:text-blue-400 font-semibold text-sm">1</span>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-slate-900 dark:text-slate-100">Select Rule Type</h3>
+                  <h3 className="font-semibold text-slate-900 dark:text-slate-100">Configure Default Rules</h3>
                   <p className="text-slate-600 dark:text-slate-400 text-sm">
-                    Choose from If, And, Then, or Or logic operators to define your rule structure.
+                    Start with pre-configured leave policy rules including Country, Office, Leave Type, and Base Entitlement.
                   </p>
                 </div>
               </div>
@@ -53,9 +53,9 @@ export default function Home() {
                   <span className="text-blue-600 dark:text-blue-400 font-semibold text-sm">2</span>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-slate-900 dark:text-slate-100">Define Condition</h3>
+                  <h3 className="font-semibold text-slate-900 dark:text-slate-100">Customize Conditions</h3>
                   <p className="text-slate-600 dark:text-slate-400 text-sm">
-                    Select from 25+ condition types like Tenure, Age, Job Title, Department, and more.
+                    Select from 25+ condition types like Tenure, Age, Job Title, Department, and configure values with smart input types.
                   </p>
                 </div>
               </div>
@@ -67,9 +67,9 @@ export default function Home() {
                   <span className="text-blue-600 dark:text-blue-400 font-semibold text-sm">3</span>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-slate-900 dark:text-slate-100">Set Operator & Value</h3>
+                  <h3 className="font-semibold text-slate-900 dark:text-slate-100">Drag & Drop Rules</h3>
                   <p className="text-slate-600 dark:text-slate-400 text-sm">
-                    Choose appropriate operators (=, &lt;, &gt;, etc.) and input values using smart input types.
+                    Reorder rules with drag-and-drop interface. Add new rules and configure complex leave policy logic.
                   </p>
                 </div>
               </div>
@@ -79,9 +79,9 @@ export default function Home() {
                   <span className="text-blue-600 dark:text-blue-400 font-semibold text-sm">4</span>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-slate-900 dark:text-slate-100">Build Complex Logic</h3>
+                  <h3 className="font-semibold text-slate-900 dark:text-slate-100">Save & Manage Policies</h3>
                   <p className="text-slate-600 dark:text-slate-400 text-sm">
-                    Add multiple rules to create sophisticated business logic with nested conditions.
+                    Save policies with custom names, view policy summaries, and manage multiple leave policies for different scenarios.
                   </p>
                 </div>
               </div>
@@ -89,10 +89,57 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Key Features */}
+        <div className="max-w-4xl mx-auto mt-16">
+          <h2 className="text-2xl font-bold text-center mb-8 text-slate-900 dark:text-slate-100">
+            Key Features
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-white dark:bg-slate-800 rounded-lg p-6 shadow-sm border border-slate-200 dark:border-slate-700">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-8 h-8 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
+                  <CheckCircle className="h-4 w-4 text-green-600 dark:text-green-400" />
+                </div>
+                <h3 className="font-semibold text-slate-900 dark:text-slate-100">Smart Validation</h3>
+              </div>
+              <p className="text-slate-600 dark:text-slate-400 text-sm">
+                Real-time validation ensures all required fields are completed before saving policies.
+              </p>
+            </div>
+            
+            <div className="bg-white dark:bg-slate-800 rounded-lg p-6 shadow-sm border border-slate-200 dark:border-slate-700">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
+                  <Database className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                </div>
+                <h3 className="font-semibold text-slate-900 dark:text-slate-100">25+ Condition Types</h3>
+              </div>
+              <p className="text-slate-600 dark:text-slate-400 text-sm">
+                Comprehensive condition library including Country, Office, Tenure, Age, Job Title, Department, and more.
+              </p>
+            </div>
+            
+            <div className="bg-white dark:bg-slate-800 rounded-lg p-6 shadow-sm border border-slate-200 dark:border-slate-700">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center">
+                  <Plus className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+                </div>
+                <h3 className="font-semibold text-slate-900 dark:text-slate-100">Policy Management</h3>
+              </div>
+              <p className="text-slate-600 dark:text-slate-400 text-sm">
+                Save, load, edit, and manage multiple leave policies with intelligent policy summaries.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Footer */}
         <div className="text-center mt-16 pt-8 border-t border-slate-200 dark:border-slate-700">
           <p className="text-slate-500 dark:text-slate-400">
-            Built with Next.js, TypeScript, and shadcn/ui components
+            DRT Rules Builder - Built with Next.js, TypeScript, and shadcn/ui components
+          </p>
+          <p className="text-slate-400 dark:text-slate-500 text-sm mt-2">
+            Intelligent leave policy configuration with drag-and-drop rule building
           </p>
         </div>
       </div>
