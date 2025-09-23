@@ -78,7 +78,7 @@ export default function RulesBuilderPage() {
     <div className="container mx-auto p-6 max-w-4xl">
       <Card>
         <CardHeader className="py-6">
-          <CardTitle>Rules Builder</CardTitle>
+          <CardTitle>Create New Policy</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4 py-6">
           {rules.length === 0 ? (
@@ -102,6 +102,7 @@ export default function RulesBuilderPage() {
                       rule={rule}
                       onUpdate={(updatedRule) => updateRule(rule.id, updatedRule)}
                       onDelete={() => deleteRule(rule.id)}
+                      allRules={rules}
                     />
                   ))}
                 </div>

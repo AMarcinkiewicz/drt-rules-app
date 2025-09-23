@@ -16,9 +16,10 @@ interface RuleRowProps {
   rule: Rule;
   onUpdate: (updatedRule: Partial<Rule>) => void;
   onDelete: () => void;
+  allRules: Rule[];
 }
 
-export function RuleRow({ rule, onUpdate, onDelete }: RuleRowProps) {
+export function RuleRow({ rule, onUpdate, onDelete, allRules }: RuleRowProps) {
   const {
     attributes,
     listeners,
@@ -35,6 +36,18 @@ export function RuleRow({ rule, onUpdate, onDelete }: RuleRowProps) {
   };
 
   const conditionTypes = Object.keys(drtConfig.conditions);
+  
+  // Filter out "Base entitlement" if it's already selected by another rule
+  const availableConditionTypes = conditionTypes.filter(conditionType => {
+    if (conditionType === "Base entitlement") {
+      // Check if any other rule (not the current one) has "Base entitlement" selected
+      return !allRules.some(otherRule => 
+        otherRule.id !== rule.id && otherRule.conditionType === "Base entitlement"
+      );
+    }
+    return true;
+  });
+  
   const selectedCondition = drtConfig.conditions[rule.conditionType as keyof typeof drtConfig.conditions];
   
   // Parse operators from the condition config
@@ -50,6 +63,21 @@ export function RuleRow({ rule, onUpdate, onDelete }: RuleRowProps) {
       conditionValue: "",
     });
   };
+
+  // If current rule has "Base entitlement" but it's no longer available, reset to first available option
+  if (rule.conditionType === "Base entitlement" && !availableConditionTypes.includes("Base entitlement")) {
+    const firstAvailable = availableConditionTypes[0];
+    if (firstAvailable) {
+      const newCondition = drtConfig.conditions[firstAvailable as keyof typeof drtConfig.conditions];
+      const newOperators = newCondition?.operators[0]?.split(',').map(op => op.trim()) || [];
+      
+      onUpdate({
+        conditionType: firstAvailable,
+        operator: newOperators[0] || "",
+        conditionValue: "",
+      });
+    }
+  }
 
   const handleOperatorChange = (value: string) => {
     onUpdate({ operator: value });
@@ -158,7 +186,7 @@ export function RuleRow({ rule, onUpdate, onDelete }: RuleRowProps) {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  {conditionTypes.map((type) => (
+                  {availableConditionTypes.map((type) => (
                     <SelectItem key={type} value={type}>
                       {type}
                     </SelectItem>

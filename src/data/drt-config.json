@@ -54,7 +54,7 @@
       ],
       "inputType": "dropdown"
     },
-    "Entitlement": {
+    "Base entitlement": {
       "operators": [
         "="
       ],
@@ -111,7 +111,7 @@
       ],
       "inputType": "number"
     },
-    "Additional Entitlement": {
+    "Additional entitlement": {
       "operators": [
         "="
       ],
