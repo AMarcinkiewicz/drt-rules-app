@@ -122,54 +122,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Key Features */}
-        <div className="max-w-4xl mx-auto mb-20">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-4">
-              Key Features
-            </h2>
-            <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-              Powerful capabilities that make leave policy management effortless
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white dark:bg-slate-800 rounded-xl p-8 shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:border-green-300 dark:hover:border-green-700 transition-all duration-300 group">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  <CheckCircle className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="font-semibold text-slate-900 dark:text-slate-100 text-lg">Smart Validation</h3>
-              </div>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Real-time validation ensures all required fields are completed before saving policies.
-              </p>
-            </div>
-            
-            <div className="bg-white dark:bg-slate-800 rounded-xl p-8 shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-300 group">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  <Database className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="font-semibold text-slate-900 dark:text-slate-100 text-lg">25+ Condition Types</h3>
-              </div>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Comprehensive condition library including Country, Office, Tenure, Age, Job Title, Department, and more.
-              </p>
-            </div>
-            
-            <div className="bg-white dark:bg-slate-800 rounded-xl p-8 shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-lg hover:border-purple-300 dark:hover:border-purple-700 transition-all duration-300 group">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  <Users className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="font-semibold text-slate-900 dark:text-slate-100 text-lg">Policy Management</h3>
-              </div>
-              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Save, load, edit, and manage multiple leave policies with intelligent policy summaries.
-              </p>
-            </div>
-          </div>
-        </div>
 
         {/* Final CTA Section */}
         <div className="max-w-4xl mx-auto mb-20">
