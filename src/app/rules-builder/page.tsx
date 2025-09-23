@@ -1,10 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { SegmentedControl } from "@/components/ui/segmented-control";
+import { Modal } from "@/components/ui/modal";
 import { Plus } from "lucide-react";
 import { RuleRow } from "@/components/RuleRow";
+import { PolicySummary } from "@/components/PolicySummary";
+import { SavedPolicyCard, SavedPolicy } from "@/components/SavedPolicyCard";
 import drtConfig from "@/data/drt-config.json";
 import {
   DndContext,
@@ -121,6 +125,10 @@ const createDefaultRules = (): Rule[] => {
 
 export default function RulesBuilderPage() {
   const [rules, setRules] = useState<Rule[]>(createDefaultRules());
+  const [activeTab, setActiveTab] = useState<"create" | "saved">("create");
+  const [savedPolicies, setSavedPolicies] = useState<SavedPolicy[]>([]);
+  const [isSummaryModalOpen, setIsSummaryModalOpen] = useState(false);
+  const [policyName, setPolicyName] = useState("");
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -128,6 +136,77 @@ export default function RulesBuilderPage() {
       coordinateGetter: sortableKeyboardCoordinates,
     })
   );
+
+  // Load saved policies from localStorage on component mount
+  useEffect(() => {
+    const saved = localStorage.getItem('drt-saved-policies');
+    if (saved) {
+      setSavedPolicies(JSON.parse(saved));
+    }
+  }, []);
+
+  // Save policies to localStorage whenever savedPolicies changes
+  useEffect(() => {
+    localStorage.setItem('drt-saved-policies', JSON.stringify(savedPolicies));
+  }, [savedPolicies]);
+
+  // Validation function to check if all required values are entered
+  const isPolicyValid = () => {
+    return rules.every(rule => 
+      rule.conditionValue && 
+      rule.conditionValue.trim() !== "" &&
+      rule.operator &&
+      rule.operator.trim() !== ""
+    );
+  };
+
+  // Save policy function
+  const savePolicy = () => {
+    if (!isPolicyValid()) return;
+    
+    const newPolicy: SavedPolicy = {
+      id: Date.now().toString(),
+      name: policyName || `Policy ${savedPolicies.length + 1}`,
+      createdAt: new Date().toISOString(),
+      rules: rules.map(rule => ({
+        ruleType: rule.ruleType,
+        conditionType: rule.conditionType,
+        operator: rule.operator,
+        conditionValue: rule.conditionValue
+      }))
+    };
+    
+    setSavedPolicies(prev => [...prev, newPolicy]);
+    setIsSummaryModalOpen(true);
+  };
+
+  // Reset policy function
+  const resetPolicy = () => {
+    setRules(createDefaultRules());
+    setPolicyName("");
+    setIsSummaryModalOpen(false);
+  };
+
+  // Delete saved policy function
+  const deleteSavedPolicy = (policyId: string) => {
+    setSavedPolicies(prev => prev.filter(policy => policy.id !== policyId));
+  };
+
+  // View saved policy function
+  const viewSavedPolicy = (policy: SavedPolicy) => {
+    // Convert saved policy back to rules format
+    const policyRules: Rule[] = policy.rules.map((rule, index) => ({
+      id: `policy-${policy.id}-${index}`,
+      ruleType: rule.ruleType,
+      conditionType: rule.conditionType,
+      operator: rule.operator,
+      conditionValue: rule.conditionValue,
+      isDefault: false
+    }));
+    
+    setRules(policyRules);
+    setActiveTab("create");
+  };
 
   const addNewRule = () => {
     const newRule: Rule = {
@@ -202,40 +281,116 @@ export default function RulesBuilderPage() {
 
   return (
     <div className="container mx-auto p-6 max-w-4xl">
-      <Card>
-        <CardHeader className="py-6">
-          <CardTitle>Create New Policy</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4 py-6">
-          <DndContext
-            sensors={sensors}
-            collisionDetection={closestCenter}
-            onDragEnd={handleDragEnd}
-          >
-            <SortableContext items={rules.map(rule => rule.id)} strategy={verticalListSortingStrategy}>
-              <div className="space-y-4">
-                  {rules.map((rule) => (
-                    <RuleRow
-                      key={rule.id}
-                      rule={rule}
-                      onUpdate={(updatedRule) => updateRule(rule.id, updatedRule)}
-                      onDelete={() => deleteRule(rule.id)}
-                      allRules={rules}
-                      isDeletable={!rule.isDefault}
-                      isConditionTypeEditable={!rule.isDefault}
+      {/* Segmented Controller */}
+      <div className="mb-6">
+        <SegmentedControl
+          options={[
+            { value: "create", label: "Create Policy" },
+            { value: "saved", label: "Saved Policies" }
+          ]}
+          value={activeTab}
+          onValueChange={(value) => setActiveTab(value as "create" | "saved")}
+        />
+      </div>
+
+      {activeTab === "create" ? (
+        <Card>
+          <CardHeader className="py-6">
+            <div className="flex items-center justify-between">
+              <CardTitle>Create New Policy</CardTitle>
+              <div className="flex items-center gap-3">
+                <input
+                  type="text"
+                  placeholder="Policy name (optional)"
+                  value={policyName}
+                  onChange={(e) => setPolicyName(e.target.value)}
+                  className="px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <Button 
+                  onClick={savePolicy}
+                  disabled={!isPolicyValid()}
+                  className={`flex items-center gap-2 ${!isPolicyValid() ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+                >
+                  Save Policy
+                </Button>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4 py-6">
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
+            >
+              <SortableContext items={rules.map(rule => rule.id)} strategy={verticalListSortingStrategy}>
+                <div className="space-y-4">
+                    {rules.map((rule) => (
+                      <RuleRow
+                        key={rule.id}
+                        rule={rule}
+                        onUpdate={(updatedRule) => updateRule(rule.id, updatedRule)}
+                        onDelete={() => deleteRule(rule.id)}
+                        allRules={rules}
+                        isDeletable={!rule.isDefault}
+                        isConditionTypeEditable={!rule.isDefault}
+                      />
+                    ))}
+                </div>
+              </SortableContext>
+              <div className="flex justify-center pt-4">
+                <Button onClick={addNewRule} variant="outline" className="flex items-center gap-2 cursor-pointer">
+                  <Plus className="h-4 w-4" />
+                  Add New Rule
+                </Button>
+              </div>
+            </DndContext>
+          </CardContent>
+        </Card>
+      ) : (
+        <div className="space-y-4">
+          <Card>
+            <CardHeader>
+              <CardTitle>Saved Policies</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {savedPolicies.length === 0 ? (
+                <div className="text-center py-12">
+                  <p className="text-gray-500">No saved policies yet.</p>
+                  <p className="text-sm text-gray-400 mt-1">Create your first policy to see it here.</p>
+                </div>
+              ) : (
+                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                  {savedPolicies.map((policy) => (
+                    <SavedPolicyCard
+                      key={policy.id}
+                      policy={policy}
+                      onView={viewSavedPolicy}
+                      onDelete={deleteSavedPolicy}
                     />
                   ))}
-              </div>
-            </SortableContext>
-            <div className="flex justify-center pt-4">
-              <Button onClick={addNewRule} variant="outline" className="flex items-center gap-2 cursor-pointer">
-                <Plus className="h-4 w-4" />
-                Add New Rule
-              </Button>
-            </div>
-          </DndContext>
-        </CardContent>
-      </Card>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
+      {/* Policy Summary Modal */}
+      <Modal
+        isOpen={isSummaryModalOpen}
+        onClose={() => setIsSummaryModalOpen(false)}
+        title="Policy Summary"
+      >
+        <PolicySummary rules={rules} />
+        <div className="flex justify-end gap-3 mt-6">
+          <Button variant="outline" onClick={() => setIsSummaryModalOpen(false)} className="cursor-pointer">
+            Cancel
+          </Button>
+          <Button onClick={resetPolicy} className="cursor-pointer">
+            OK - Reset Builder
+          </Button>
+        </div>
+      </Modal>
     </div>
   );
 }
