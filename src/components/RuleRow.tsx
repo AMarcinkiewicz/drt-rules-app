@@ -72,7 +72,7 @@ export function RuleRow({ rule, onUpdate, onDelete }: RuleRowProps) {
             value={rule.conditionValue}
             onChange={(e) => handleConditionValueChange(e.target.value)}
             placeholder="Enter number"
-            className="w-full h-9 min-w-0 max-w-full"
+            className="w-full h-9 min-w-0 max-w-full cursor-pointer"
           />
         );
       
@@ -82,14 +82,14 @@ export function RuleRow({ rule, onUpdate, onDelete }: RuleRowProps) {
             type="date"
             value={rule.conditionValue}
             onChange={(e) => handleConditionValueChange(e.target.value)}
-            className="w-full h-9 min-w-0 max-w-full"
+            className="w-full h-9 min-w-0 max-w-full cursor-pointer"
           />
         );
       
       case "dropdown":
         return (
           <Select value={rule.conditionValue} onValueChange={handleConditionValueChange}>
-            <SelectTrigger className="w-full h-8 min-w-0 max-w-full">
+            <SelectTrigger className="w-full h-8 min-w-0 max-w-full cursor-pointer">
               <SelectValue placeholder="Select value" />
             </SelectTrigger>
             <SelectContent>
@@ -108,14 +108,14 @@ export function RuleRow({ rule, onUpdate, onDelete }: RuleRowProps) {
             value={rule.conditionValue}
             onChange={(e) => handleConditionValueChange(e.target.value)}
             placeholder="Enter value"
-            className="w-full h-9 min-w-0 max-w-full"
+            className="w-full h-9 min-w-0 max-w-full cursor-pointer"
           />
         );
     }
   };
 
   return (
-    <Card ref={setNodeRef} style={style} className={isDragging ? "shadow-lg" : ""}>
+    <Card ref={setNodeRef} style={style} className="shadow-none">
       <CardContent className="px-3 pt-2 pb-3">
         <div className="flex items-end gap-3">
           {/* Drag Handle - Hugs left side */}
@@ -137,7 +137,7 @@ export function RuleRow({ rule, onUpdate, onDelete }: RuleRowProps) {
             <div className="w-32 space-y-1 min-w-0 overflow-hidden">
               <label className="text-xs font-medium text-gray-600">Rule Type</label>
               <Select value={rule.ruleType} onValueChange={(value) => onUpdate({ ruleType: value })}>
-                <SelectTrigger className="w-full h-8 min-w-0 max-w-full">
+                <SelectTrigger className="w-full h-8 min-w-0 max-w-full cursor-pointer">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -154,7 +154,7 @@ export function RuleRow({ rule, onUpdate, onDelete }: RuleRowProps) {
             <div className="flex-1 space-y-1 min-w-0 overflow-hidden">
               <label className="text-xs font-medium text-gray-600">Condition Type</label>
               <Select value={rule.conditionType} onValueChange={handleConditionTypeChange}>
-                <SelectTrigger className="w-full h-8 min-w-0 max-w-full">
+                <SelectTrigger className="w-full h-8 min-w-0 max-w-full cursor-pointer">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -171,7 +171,7 @@ export function RuleRow({ rule, onUpdate, onDelete }: RuleRowProps) {
             <div className="w-24 space-y-1 min-w-0 overflow-hidden">
               <label className="text-xs font-medium text-gray-600">Operator</label>
               <Select value={rule.operator} onValueChange={handleOperatorChange}>
-                <SelectTrigger className="w-full h-8 min-w-0 max-w-full">
+                <SelectTrigger className="w-full h-8 min-w-0 max-w-full cursor-pointer">
                   <SelectValue placeholder="Select operator" />
                 </SelectTrigger>
                 <SelectContent>
@@ -196,7 +196,7 @@ export function RuleRow({ rule, onUpdate, onDelete }: RuleRowProps) {
                 variant="outline"
                 size="icon"
                 onClick={onDelete}
-                className="text-red-600 hover:text-red-700 hover:bg-red-50 h-9 w-9"
+                className="text-red-600 hover:text-red-700 hover:bg-red-50 h-9 w-9 cursor-pointer"
               >
                 <Trash2 className="h-3 w-3" />
               </Button>

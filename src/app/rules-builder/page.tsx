@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus } from "lucide-react";
 import { RuleRow } from "@/components/RuleRow";
 import drtConfig from "@/data/drt-config.json";
 import {
@@ -83,7 +83,7 @@ export default function RulesBuilderPage() {
         <CardContent className="space-y-4 py-6">
           {rules.length === 0 ? (
             <div className="flex justify-center py-12">
-              <Button onClick={addNewRule} className="flex items-center gap-2">
+              <Button onClick={addNewRule} className="flex items-center gap-2 cursor-pointer">
                 <Plus className="h-4 w-4" />
                 Add New Rule
               </Button>
@@ -107,7 +107,7 @@ export default function RulesBuilderPage() {
                 </div>
               </SortableContext>
               <div className="flex justify-center pt-4">
-                <Button onClick={addNewRule} variant="outline" className="flex items-center gap-2">
+                <Button onClick={addNewRule} variant="outline" className="flex items-center gap-2 cursor-pointer">
                   <Plus className="h-4 w-4" />
                   Add New Rule
                 </Button>

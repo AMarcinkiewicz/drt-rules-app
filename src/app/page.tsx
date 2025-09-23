@@ -21,7 +21,7 @@ export default function Home() {
         {/* Main CTA */}
         <div className="text-center mb-16">
           <Link href="/rules-builder">
-            <Button size="lg" className="text-lg px-8 py-6">
+            <Button size="lg" className="text-lg px-8 py-6 cursor-pointer">
               <Settings className="mr-2 h-5 w-5" />
               Launch Rules Builder
             </Button>
