@@ -320,7 +320,7 @@ export default function RulesBuilderPage() {
 
       {activeTab === "create" ? (
         <Card>
-          <CardHeader className="py-6">
+          <CardHeader className="pt-6 pb-0">
             <div className="flex items-center justify-between">
               <CardTitle>Create New Policy</CardTitle>
               <div className="flex items-center gap-3">
@@ -341,7 +341,7 @@ export default function RulesBuilderPage() {
               </div>
             </div>
           </CardHeader>
-          <CardContent className="space-y-4 py-6">
+          <CardContent className="space-y-4 pt-0 pb-6">
             <DndContext
               sensors={sensors}
               collisionDetection={closestCenter}
@@ -374,10 +374,10 @@ export default function RulesBuilderPage() {
       ) : (
         <div className="space-y-4">
           <Card>
-            <CardHeader>
+            <CardHeader className="pt-6 pb-0">
               <CardTitle>Saved Policies</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="space-y-4 pt-6 pb-6">
               {savedPolicies.length === 0 ? (
                 <div className="text-center py-12">
                   <p className="text-gray-500">No saved policies yet.</p>

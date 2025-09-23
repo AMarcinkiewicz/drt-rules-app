@@ -29,7 +29,7 @@ export function SavedPolicyCard({ policy, onView, onDelete }: SavedPolicyCardPro
 
   return (
     <Card className="hover:shadow-md transition-shadow">
-      <CardHeader className="pb-3">
+      <CardHeader className="pt-4 pb-3">
         <div className="flex items-start justify-between">
           <div className="flex-1">
             <CardTitle className="text-lg font-semibold text-gray-900">
@@ -60,7 +60,7 @@ export function SavedPolicyCard({ policy, onView, onDelete }: SavedPolicyCardPro
           </div>
         </div>
       </CardHeader>
-      <CardContent className="pt-0">
+      <CardContent className="pt-0 pb-4">
         <div className="space-y-2">
           <div className="flex items-center justify-between text-sm">
             <span className="text-gray-600">Rules:</span>

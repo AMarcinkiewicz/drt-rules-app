@@ -28,53 +28,6 @@ export default function Home() {
           </Link>
         </div>
 
-        {/* Features Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          <Card>
-            <CardHeader>
-              <div className="flex items-center gap-2">
-                <Plus className="h-5 w-5 text-blue-600" />
-                <CardTitle>Dynamic Rule Creation</CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <CardDescription>
-                Add new rules with a single click. Each rule supports multiple condition types, 
-                operators, and value inputs based on your configuration.
-              </CardDescription>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <div className="flex items-center gap-2">
-                <Database className="h-5 w-5 text-green-600" />
-                <CardTitle>Data-Driven Configuration</CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <CardDescription>
-                All dropdowns, operators, and input types are dynamically generated from your 
-                JSON configuration file, making it easy to customize without code changes.
-              </CardDescription>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <div className="flex items-center gap-2">
-                <Trash2 className="h-5 w-5 text-red-600" />
-                <CardTitle>Easy Management</CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <CardDescription>
-                Remove unwanted rules with a single click. Each rule row is independent and 
-                can be deleted without affecting other rules in your configuration.
-              </CardDescription>
-            </CardContent>
-          </Card>
-        </div>
 
         {/* How It Works */}
         <div className="max-w-4xl mx-auto">
