@@ -77,10 +77,10 @@ export default function RulesBuilderPage() {
   return (
     <div className="container mx-auto p-6 max-w-4xl">
       <Card>
-        <CardHeader>
+        <CardHeader className="py-6">
           <CardTitle>Rules Builder</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-4 py-6">
           {rules.length === 0 ? (
             <div className="flex justify-center py-12">
               <Button onClick={addNewRule} className="flex items-center gap-2">

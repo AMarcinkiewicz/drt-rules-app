@@ -72,7 +72,7 @@ export function RuleRow({ rule, onUpdate, onDelete }: RuleRowProps) {
             value={rule.conditionValue}
             onChange={(e) => handleConditionValueChange(e.target.value)}
             placeholder="Enter number"
-            className="w-full h-9"
+            className="w-full h-9 min-w-0 max-w-full"
           />
         );
       
@@ -82,14 +82,14 @@ export function RuleRow({ rule, onUpdate, onDelete }: RuleRowProps) {
             type="date"
             value={rule.conditionValue}
             onChange={(e) => handleConditionValueChange(e.target.value)}
-            className="w-full h-9"
+            className="w-full h-9 min-w-0 max-w-full"
           />
         );
       
       case "dropdown":
         return (
           <Select value={rule.conditionValue} onValueChange={handleConditionValueChange}>
-            <SelectTrigger className="w-full h-8">
+            <SelectTrigger className="w-full h-8 min-w-0 max-w-full">
               <SelectValue placeholder="Select value" />
             </SelectTrigger>
             <SelectContent>
@@ -108,7 +108,7 @@ export function RuleRow({ rule, onUpdate, onDelete }: RuleRowProps) {
             value={rule.conditionValue}
             onChange={(e) => handleConditionValueChange(e.target.value)}
             placeholder="Enter value"
-            className="w-full h-9"
+            className="w-full h-9 min-w-0 max-w-full"
           />
         );
     }
@@ -116,7 +116,7 @@ export function RuleRow({ rule, onUpdate, onDelete }: RuleRowProps) {
 
   return (
     <Card ref={setNodeRef} style={style} className={isDragging ? "shadow-lg" : ""}>
-      <CardContent className="px-3 py-0">
+      <CardContent className="px-3 pt-2 pb-3">
         <div className="flex items-end gap-3">
           {/* Drag Handle - Hugs left side */}
           <div className="flex items-center justify-center flex-shrink-0">
@@ -132,12 +132,12 @@ export function RuleRow({ rule, onUpdate, onDelete }: RuleRowProps) {
           </div>
 
           {/* Form Fields - Fill remaining space */}
-          <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 items-end">
+          <div className="flex-1 flex gap-3 items-end">
             {/* Rule Type */}
-            <div className="space-y-1">
+            <div className="w-32 space-y-1 min-w-0 overflow-hidden">
               <label className="text-xs font-medium text-gray-600">Rule Type</label>
               <Select value={rule.ruleType} onValueChange={(value) => onUpdate({ ruleType: value })}>
-                <SelectTrigger className="w-full h-8">
+                <SelectTrigger className="w-full h-8 min-w-0 max-w-full">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -151,10 +151,10 @@ export function RuleRow({ rule, onUpdate, onDelete }: RuleRowProps) {
             </div>
 
             {/* Condition Type */}
-            <div className="space-y-1">
+            <div className="flex-1 space-y-1 min-w-0 overflow-hidden">
               <label className="text-xs font-medium text-gray-600">Condition Type</label>
               <Select value={rule.conditionType} onValueChange={handleConditionTypeChange}>
-                <SelectTrigger className="w-full h-8">
+                <SelectTrigger className="w-full h-8 min-w-0 max-w-full">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -168,10 +168,10 @@ export function RuleRow({ rule, onUpdate, onDelete }: RuleRowProps) {
             </div>
 
             {/* Operator */}
-            <div className="space-y-1">
+            <div className="w-24 space-y-1 min-w-0 overflow-hidden">
               <label className="text-xs font-medium text-gray-600">Operator</label>
               <Select value={rule.operator} onValueChange={handleOperatorChange}>
-                <SelectTrigger className="w-full h-8">
+                <SelectTrigger className="w-full h-8 min-w-0 max-w-full">
                   <SelectValue placeholder="Select operator" />
                 </SelectTrigger>
                 <SelectContent>
@@ -185,13 +185,13 @@ export function RuleRow({ rule, onUpdate, onDelete }: RuleRowProps) {
             </div>
 
             {/* Condition Value */}
-            <div className="space-y-1">
+            <div className="flex-1 space-y-1 min-w-0 overflow-hidden">
               <label className="text-xs font-medium text-gray-600">Condition Value</label>
               {renderConditionValueInput()}
             </div>
 
             {/* Delete Button */}
-            <div className="flex justify-end">
+            <div className="flex justify-end flex-shrink-0">
               <Button
                 variant="outline"
                 size="icon"
