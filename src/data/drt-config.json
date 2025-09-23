@@ -255,6 +255,96 @@
         "X Days/Months"
       ],
       "inputType": "number"
+    },
+    "Country": {
+      "operators": [
+        "=, \u2260"
+      ],
+      "values": [
+        "United States",
+        "Canada",
+        "United Kingdom",
+        "Germany",
+        "France",
+        "Spain",
+        "Italy",
+        "Netherlands",
+        "Belgium",
+        "Switzerland",
+        "Austria",
+        "Sweden",
+        "Norway",
+        "Denmark",
+        "Finland",
+        "Australia",
+        "New Zealand",
+        "Japan",
+        "South Korea",
+        "Singapore",
+        "India",
+        "China",
+        "Brazil",
+        "Mexico",
+        "Argentina",
+        "Chile",
+        "South Africa",
+        "Egypt",
+        "Nigeria",
+        "Kenya",
+        "Morocco",
+        "Israel",
+        "Turkey",
+        "Russia",
+        "Poland",
+        "Czech Republic",
+        "Hungary",
+        "Romania",
+        "Bulgaria",
+        "Croatia",
+        "Slovenia",
+        "Slovakia",
+        "Estonia",
+        "Latvia",
+        "Lithuania",
+        "Ireland",
+        "Portugal",
+        "Greece",
+        "Cyprus",
+        "Malta",
+        "Luxembourg",
+        "Iceland",
+        "Liechtenstein",
+        "Monaco",
+        "Andorra",
+        "San Marino",
+        "Vatican City"
+      ],
+      "inputType": "dropdown"
+    },
+    "Office": {
+      "operators": [
+        "="
+      ],
+      "values": [
+        "Office 1",
+        "Office 2",
+        "Office 3"
+      ],
+      "inputType": "dropdown"
+    },
+    "Leave Type": {
+      "operators": [
+        "="
+      ],
+      "values": [
+        "Annual Leave",
+        "Sick Leave",
+        "Maternity Leave",
+        "Paternity Leave",
+        "Parental Leave",
+        "Bereavement Leave"
+      ],
+      "inputType": "dropdown"
     }
   }
 }
