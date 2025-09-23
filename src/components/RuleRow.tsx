@@ -17,9 +17,11 @@ interface RuleRowProps {
   onUpdate: (updatedRule: Partial<Rule>) => void;
   onDelete: () => void;
   allRules: Rule[];
+  isDeletable?: boolean;
+  isConditionTypeEditable?: boolean;
 }
 
-export function RuleRow({ rule, onUpdate, onDelete, allRules }: RuleRowProps) {
+export function RuleRow({ rule, onUpdate, onDelete, allRules, isDeletable = true, isConditionTypeEditable = true }: RuleRowProps) {
   const {
     attributes,
     listeners,
@@ -181,8 +183,12 @@ export function RuleRow({ rule, onUpdate, onDelete, allRules }: RuleRowProps) {
             {/* Condition Type */}
             <div className="flex-1 space-y-1 min-w-0 overflow-hidden">
               <label className="text-xs font-medium text-gray-600">Condition Type</label>
-              <Select value={rule.conditionType} onValueChange={handleConditionTypeChange}>
-                <SelectTrigger className="w-full h-8 min-w-0 max-w-full cursor-pointer">
+              <Select 
+                value={rule.conditionType} 
+                onValueChange={handleConditionTypeChange}
+                disabled={!isConditionTypeEditable}
+              >
+                <SelectTrigger className={`w-full h-8 min-w-0 max-w-full ${isConditionTypeEditable ? 'cursor-pointer' : 'cursor-not-allowed opacity-60'}`}>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -219,16 +225,18 @@ export function RuleRow({ rule, onUpdate, onDelete, allRules }: RuleRowProps) {
             </div>
 
             {/* Delete Button */}
-            <div className="flex justify-end flex-shrink-0">
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={onDelete}
-                className="text-red-600 hover:text-red-700 hover:bg-red-50 h-9 w-9 cursor-pointer"
-              >
-                <Trash2 className="h-3 w-3" />
-              </Button>
-            </div>
+            {isDeletable && (
+              <div className="flex justify-end flex-shrink-0">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={onDelete}
+                  className="text-red-600 hover:text-red-700 hover:bg-red-50 h-9 w-9 cursor-pointer"
+                >
+                  <Trash2 className="h-3 w-3" />
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       </CardContent>

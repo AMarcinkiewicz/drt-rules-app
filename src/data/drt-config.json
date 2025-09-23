@@ -258,7 +258,7 @@
     },
     "Country": {
       "operators": [
-        "=, \u2260"
+        "="
       ],
       "values": [
         "United States",
