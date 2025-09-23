@@ -128,6 +128,9 @@ export default function RulesBuilderPage() {
   const [activeTab, setActiveTab] = useState<"create" | "saved">("create");
   const [savedPolicies, setSavedPolicies] = useState<SavedPolicy[]>([]);
   const [isSummaryModalOpen, setIsSummaryModalOpen] = useState(false);
+  const [isViewModalOpen, setIsViewModalOpen] = useState(false);
+  const [viewingPolicy, setViewingPolicy] = useState<SavedPolicy | null>(null);
+  const [editingPolicyId, setEditingPolicyId] = useState<string | null>(null);
   const [policyName, setPolicyName] = useState("");
 
   const sensors = useSensors(
@@ -164,10 +167,12 @@ export default function RulesBuilderPage() {
   const savePolicy = () => {
     if (!isPolicyValid()) return;
     
-    const newPolicy: SavedPolicy = {
-      id: Date.now().toString(),
+    const policyData = {
+      id: editingPolicyId || Date.now().toString(),
       name: policyName || `Policy ${savedPolicies.length + 1}`,
-      createdAt: new Date().toISOString(),
+      createdAt: editingPolicyId ? 
+        savedPolicies.find(p => p.id === editingPolicyId)?.createdAt || new Date().toISOString() : 
+        new Date().toISOString(),
       rules: rules.map(rule => ({
         ruleType: rule.ruleType,
         conditionType: rule.conditionType,
@@ -176,7 +181,16 @@ export default function RulesBuilderPage() {
       }))
     };
     
-    setSavedPolicies(prev => [...prev, newPolicy]);
+    if (editingPolicyId) {
+      // Update existing policy
+      setSavedPolicies(prev => prev.map(policy => 
+        policy.id === editingPolicyId ? policyData : policy
+      ));
+    } else {
+      // Create new policy
+      setSavedPolicies(prev => [...prev, policyData]);
+    }
+    
     setIsSummaryModalOpen(true);
   };
 
@@ -184,6 +198,7 @@ export default function RulesBuilderPage() {
   const resetPolicy = () => {
     setRules(createDefaultRules());
     setPolicyName("");
+    setEditingPolicyId(null);
     setIsSummaryModalOpen(false);
   };
 
@@ -194,6 +209,12 @@ export default function RulesBuilderPage() {
 
   // View saved policy function
   const viewSavedPolicy = (policy: SavedPolicy) => {
+    setViewingPolicy(policy);
+    setIsViewModalOpen(true);
+  };
+
+  // Edit saved policy function
+  const editSavedPolicy = (policy: SavedPolicy) => {
     // Convert saved policy back to rules format
     const policyRules: Rule[] = policy.rules.map((rule, index) => ({
       id: `policy-${policy.id}-${index}`,
@@ -205,7 +226,11 @@ export default function RulesBuilderPage() {
     }));
     
     setRules(policyRules);
+    setPolicyName(policy.name);
+    setEditingPolicyId(policy.id);
     setActiveTab("create");
+    setIsViewModalOpen(false);
+    setViewingPolicy(null);
   };
 
   const addNewRule = () => {
@@ -311,7 +336,7 @@ export default function RulesBuilderPage() {
                   disabled={!isPolicyValid()}
                   className={`flex items-center gap-2 ${!isPolicyValid() ? 'cursor-not-allowed' : 'cursor-pointer'}`}
                 >
-                  Save Policy
+                  {editingPolicyId ? 'Update Policy' : 'Save Policy'}
                 </Button>
               </div>
             </div>
@@ -389,6 +414,59 @@ export default function RulesBuilderPage() {
           <Button onClick={resetPolicy} className="cursor-pointer">
             OK - Reset Builder
           </Button>
+        </div>
+      </Modal>
+
+      {/* View Saved Policy Modal */}
+      <Modal
+        isOpen={isViewModalOpen}
+        onClose={() => {
+          setIsViewModalOpen(false);
+          setViewingPolicy(null);
+        }}
+        title={`View Policy: ${viewingPolicy?.name || ''}`}
+      >
+        {viewingPolicy && (
+          <div className="space-y-4">
+            <PolicySummary rules={viewingPolicy.rules.map((rule, index) => ({
+              id: `view-${index}`,
+              ruleType: rule.ruleType,
+              conditionType: rule.conditionType,
+              operator: rule.operator,
+              conditionValue: rule.conditionValue,
+              isDefault: false
+            }))} />
+            
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+              <h4 className="text-sm font-semibold text-gray-700 mb-2">Policy Information</h4>
+              <div className="space-y-1 text-sm text-gray-600">
+                <div><span className="font-medium">Name:</span> {viewingPolicy.name}</div>
+                <div><span className="font-medium">Created:</span> {new Date(viewingPolicy.createdAt).toLocaleString()}</div>
+                <div><span className="font-medium">Rules:</span> {viewingPolicy.rules.length}</div>
+              </div>
+            </div>
+          </div>
+        )}
+        
+        <div className="flex justify-end gap-3 mt-6">
+          <Button 
+            variant="outline" 
+            onClick={() => {
+              setIsViewModalOpen(false);
+              setViewingPolicy(null);
+            }}
+            className="cursor-pointer"
+          >
+            Close
+          </Button>
+          {viewingPolicy && (
+            <Button 
+              onClick={() => editSavedPolicy(viewingPolicy)}
+              className="cursor-pointer"
+            >
+              Edit Policy
+            </Button>
+          )}
         </div>
       </Modal>
     </div>
