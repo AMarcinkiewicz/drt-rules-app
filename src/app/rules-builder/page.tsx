@@ -146,12 +146,23 @@ export default function RulesBuilderPage() {
     if (saved) {
       setSavedPolicies(JSON.parse(saved));
     }
+    
+    // Load current working policy from localStorage
+    const currentPolicy = localStorage.getItem('drt-current-policy');
+    if (currentPolicy) {
+      setRules(JSON.parse(currentPolicy));
+    }
   }, []);
 
   // Save policies to localStorage whenever savedPolicies changes
   useEffect(() => {
     localStorage.setItem('drt-saved-policies', JSON.stringify(savedPolicies));
   }, [savedPolicies]);
+
+  // Save current working policy to localStorage whenever rules change
+  useEffect(() => {
+    localStorage.setItem('drt-current-policy', JSON.stringify(rules));
+  }, [rules]);
 
   // Validation function to check if all required values are entered
   const isPolicyValid = () => {
@@ -200,6 +211,8 @@ export default function RulesBuilderPage() {
     setPolicyName("");
     setEditingPolicyId(null);
     setIsSummaryModalOpen(false);
+    // Clear current working policy from localStorage
+    localStorage.removeItem('drt-current-policy');
   };
 
   // Delete saved policy function
