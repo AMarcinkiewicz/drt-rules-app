@@ -272,7 +272,7 @@
         "Fixed Term",
         "Intership"
       ],
-      "inputType": "date"
+      "inputType": "dropdown"
     },
     "Department": {
       "operators": [
