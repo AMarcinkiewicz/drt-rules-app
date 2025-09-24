@@ -175,7 +175,7 @@
       "values": [
         "Years"
       ],
-      "inputType": "dropdown"
+      "inputType": "number"
     },
     "Age(s) of Children": {
       "operators": [
