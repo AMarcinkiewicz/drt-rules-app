@@ -200,7 +200,12 @@
         "=, \u2260"
       ],
       "values": [
-        "Adaptive - In Tenant Values"
+        "Full Time",
+        "Part Time",
+        "Flexible Hours",
+        "Shift Work",
+        "Remote",
+        "Hybrid"
       ],
       "inputType": "dropdown"
     },
@@ -231,7 +236,23 @@
         "=, \u2260"
       ],
       "values": [
-        "Adaptive - In Tenant Values"
+        "Software Engineer",
+        "Product Manager",
+        "Sales Representative",
+        "Marketing Specialist",
+        "HR Manager",
+        "Finance Analyst",
+        "Operations Manager",
+        "Customer Success Manager",
+        "Data Scientist",
+        "Designer",
+        "Developer",
+        "Consultant",
+        "Director",
+        "Vice President",
+        "CEO",
+        "CTO",
+        "CFO"
       ],
       "inputType": "dropdown"
     },
@@ -279,7 +300,21 @@
         "=, \u2260"
       ],
       "values": [
-        "Adaptive - In Tenant Values"
+        "Engineering",
+        "Product",
+        "Sales",
+        "Marketing",
+        "Human Resources",
+        "Finance",
+        "Operations",
+        "Customer Success",
+        "Data & Analytics",
+        "Design",
+        "Legal",
+        "Administration",
+        "Research & Development",
+        "Quality Assurance",
+        "Support"
       ],
       "inputType": "dropdown"
     },
