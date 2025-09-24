@@ -11,7 +11,7 @@
         "="
       ],
       "values": [
-        "Assign Date",
+        "Join Date",
         "After Probation"
       ],
       "inputType": "dropdown"
@@ -120,6 +120,15 @@
       ],
       "inputType": "number"
     },
+    "Number of children": {
+      "operators": [
+        "=, < , > , >or=, <or=, \u2260"
+      ],
+      "values": [
+        "X"
+      ],
+      "inputType": "number"
+    },
     "Paid": {
       "operators": [
         "="
@@ -129,6 +138,15 @@
         "ON"
       ],
       "inputType": "dropdown"
+    },
+    "Previous employment": {
+      "operators": [
+        "=, < , > , >or=, <or=, \u2260"
+      ],
+      "values": [
+        "X Days/Months/Years"
+      ],
+      "inputType": "number"
     },
     "Tenure": {
       "operators": [
@@ -141,6 +159,15 @@
       ],
       "inputType": "number"
     },
+    "Total Work Experience": {
+      "operators": [
+        "=, < , > , >or=, <or=, \u2260"
+      ],
+      "values": [
+        "X Days/Months/Years"
+      ],
+      "inputType": "number"
+    },
     "Age": {
       "operators": [
         "=, < , > , >or=, <or=, \u2260"
@@ -149,6 +176,15 @@
         "Years"
       ],
       "inputType": "dropdown"
+    },
+    "Age(s) of Children": {
+      "operators": [
+        "=, < , > , >or=, <or=, \u2260"
+      ],
+      "values": [
+        "X Years"
+      ],
+      "inputType": "number"
     },
     "Join Date": {
       "operators": [
