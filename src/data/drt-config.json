@@ -11,10 +11,10 @@
         "="
       ],
       "values": [
-        "After Probation",
-        "Join Date"
+        "Assign Date",
+        "After Probation"
       ],
-      "inputType": "date"
+      "inputType": "dropdown"
     },
     "Accrual Frequency": {
       "operators": [
@@ -96,11 +96,11 @@
         "="
       ],
       "values": [
-        "Full Day",
-        "Half Day",
-        "Hourly"
+        "Hourly",
+        "Half-day",
+        "Full day"
       ],
-      "inputType": "number"
+      "inputType": "dropdown"
     },
     "Wait Period": {
       "operators": [
