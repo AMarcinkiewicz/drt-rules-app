@@ -37,7 +37,7 @@ export function RuleRow({ rule, onUpdate, onDelete, allRules, isDeletable = true
     opacity: isDragging ? 0.5 : 1,
   };
 
-  const conditionTypes = Object.keys(drtConfig.conditions);
+  const conditionTypes = Object.keys(drtConfig.conditions).sort();
   
   // Filter out "Base entitlement" if it's already selected by another rule
   const availableConditionTypes = conditionTypes.filter(conditionType => {
